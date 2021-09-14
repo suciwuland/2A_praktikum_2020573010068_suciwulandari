@@ -9,7 +9,7 @@
 <body>
     <?php
         $nama="Suci Wulan Dari";
-        echo "$nama" berkata \"Katakan namamu!"";
+        echo "$nama berkata \"Katakan namamu!\"";
     ?>
 </body>
 </html>
