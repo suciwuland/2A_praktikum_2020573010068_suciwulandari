@@ -19,7 +19,7 @@
   echo $pembayaran = $jumlahBarang / $harga;
   echo "<br>";  
   echo $pembayaran = $jumlahBarang % $harga;
-  echo <br>;
+  echo "<br>";
   ?>
 </body>
 </html>
