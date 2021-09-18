@@ -11,7 +11,7 @@
     $a = 10;
     $b = 3;
     echo "\$a = $a <BR>";
-    echo "\$a = $b <BR>";
+    echo "\$b = $b <BR>";
     echo '$a + $b = ';
     print $a+$b;
     echo "<BR>";
