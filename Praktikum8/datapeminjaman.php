@@ -31,11 +31,13 @@
             <div class="col-9">
                 <div class="card text-black em-1 mt-4" style="background-color: lightsteelblue;">
                     <div class="card-header">
-                        <b>SISTEM INFORMASI PEMINJAMAN MAHASISWA</b>
+                        <b>SISTEM INFORMASI PEMINJAMAN BARANG JURUSAN TEKNOLOGI INFORMASI DAN KOMPUTER</b>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">Alat yang dipinjam</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <img src="gambar/proyektor.jpg" class="img-thumbnail" height="200" width="200"><br>Infocus<br> jumlah=20
+                        <hr>
                         <a href="#" class="btn btn-outline-dark">Go somewhere</a>
                     </div>
                 </div>

@@ -29,16 +29,20 @@
             </div>
 
             <div class="col-9">
-                <div class="card text-black em-1 mt-4" style="background-color: lightsteelblue;">
+                <div class="card em-1 mt-4"style="background-color: lightsteelblue;">
                     <div class="card-header">
                         <b>SISTEM INFORMASI PEMINJAMAN MAHASISWA</b>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <h5 class="card-title">Data Mahasiswa</h5>
+                        <p class="card-text">PEMINJAMAN</p>
+                        <?php
+                            require "tabelmhs.php";
+                        ?>
                         <a href="#" class="btn btn-outline-dark">Go somewhere</a>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
