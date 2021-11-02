@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Alat yang dipinjam</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <img src="gambar/proyektor.jpg" class="img-thumbnail" height="200" width="200"><br>Infocus<br> jumlah=20
+                        <img src="gambar/proyektor.jpg" class="img-thumbnail" height="200" width="200"><br>Infocus<br> jumlah=15
                         <hr>
                         <a href="#" class="btn btn-outline-dark">Go somewhere</a>
                     </div>

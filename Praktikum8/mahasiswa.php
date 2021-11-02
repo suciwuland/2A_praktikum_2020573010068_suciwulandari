@@ -31,7 +31,7 @@
             <div class="col-9">
                 <div class="card em-1 mt-4"style="background-color: lightsteelblue;">
                     <div class="card-header">
-                        <b>SISTEM INFORMASI PEMINJAMAN MAHASISWA</b>
+                        <b>SISTEM INFORMASI PEMINJAMAN BARANG JURUSAN TEKNOLOGI INFORMASI DAN KOMPUTER</b>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Data Mahasiswa</h5>
