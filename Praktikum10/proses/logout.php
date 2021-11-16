@@ -1,5 +1,10 @@
 <?php
-session_unset();
+session_start();
 session_destroy();
-require 'session.php';
+if(!empty($_SESSION['username'])){
+    session_destroy();
+    echo "<script>window.location='../sign-in';</script>";
+} elseif(!empty($_SESSION['username'])){
+    echo "<script>window.location='../sign-in';</script>"; 
+}
 ?>
