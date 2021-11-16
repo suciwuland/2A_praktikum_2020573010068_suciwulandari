@@ -4,7 +4,6 @@ if(!empty($_SESSION['username'])){
     echo"<script>window.location='../index.php';</script>";
 }
 ?>
-?>
 <!doctype html>
 <html lang="en">
   <head>
