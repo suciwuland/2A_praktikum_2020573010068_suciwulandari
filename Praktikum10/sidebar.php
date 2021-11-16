@@ -29,8 +29,6 @@
                     </li>
                     <?php
                     }
-                    ?>
-                    <?php
                     if($row['level']=='admin'){
                     ?>
                     <li>
@@ -44,8 +42,6 @@
                     </li>
                     <?php
                     }
-                    ?>
-                    <?php
                     if($row['level']=='mahasiswa'){
                     ?>
                     <li>
@@ -59,8 +55,6 @@
                     </li>
                     <?php
                     }
-                    ?>
-                    <?php
                     if($row['level']=='admin'){
                     ?>
                     <li>
@@ -72,9 +66,7 @@
                         </a>
                     </li>
                     <?php
-                }
-                ?>
-                    <?php
+                    }
                     if($row['level']=='mahasiswa'){
                     ?>
                     <li>
