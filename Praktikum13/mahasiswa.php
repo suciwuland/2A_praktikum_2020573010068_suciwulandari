@@ -53,7 +53,7 @@ $select = mysqli_query($conn, "SELECT * FROM tb_mahasiswa");
                                     <h5 class="modal-title" id="exampleModalLabel">Tambah Data Mahasiswa</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="proses/proses_tambah_data.php" method="POST" enctype="multipart/form-data">
+                                <form action="proses/proses_tambah_datamhs.php" method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" name="nim" id="floatingInput" autofocus>
@@ -158,7 +158,7 @@ $select = mysqli_query($conn, "SELECT * FROM tb_mahasiswa");
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="proses/proses_edit_data_barang.php" method="post">
+                                            <form action="proses/proses_edit_datamhs.php" method="post">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" name="nim" id="floatingInput" value="<?= $hasil['nim'] ?>" readonly>
                                                     <label for="floatingInput">NIM</label>
@@ -205,7 +205,7 @@ $select = mysqli_query($conn, "SELECT * FROM tb_mahasiswa");
                                             <h5 class="modal-title" id="exampleModalLabel">Hapus</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form action="proses/delete.php" method="POST">
+                                        <form action="proses/delete_mhs.php" method="POST">
                                             <div class="modal-body">
                                                 <input type="hidden" name="nim" value="<?= $hasil['nim']; ?>">
                                                 <p style="color: red;">Apakah anda akan menghapus data
