@@ -1,5 +1,6 @@
 <?php
 include 'proses/session.php';
+include 'proses/koneksi.php';
 ?>
 <!doctype html>
 <html lang="en">

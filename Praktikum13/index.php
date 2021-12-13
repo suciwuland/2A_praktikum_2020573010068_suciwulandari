@@ -11,10 +11,8 @@ if (empty($_GET['x'])) {
     require 'dosen.php';
 }  else if ($_GET['x'] == 'datapeminjaman') {
     require 'datapeminjaman.php';
-} else if ($_GET['x'] == 'datapinjam') {
-    require 'datapeminjaman.php';
-} else if ($_GET['x'] == 'pinjam') {
-    require 'datapeminjaman.php';
+}else if ($_GET['x'] == 'pinjam') {
+    require 'peminjaman.php';
 }else if ($_GET['x'] == 'profile') {
     require 'profile.php';
 } else if ($_GET['x'] == 'setting') {
