@@ -122,7 +122,7 @@ $sql = mysqli_query(
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id= "exampleModalLabel">Tambah Data Barang</h5>
+                                <h5 class="modal-title" id= "exampleModalLabel">List Data Peminjaman</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -163,12 +163,13 @@ $sql = mysqli_query(
                                                 <td>
                                                 <?php echo $query['nama'] . "<br>"?>
                                                 <?php echo $query['kelas'] . "<br>" ?>
-                                                <?php echo $query['prodi'] . "<br>"?>
+                                                <?php echo $query['prodi']?>
                                             </td>
                                                 <td><?= $query['waktu_peminjaman'] ?></td>
                                                 <td><?= $query['waktu_pengembalian'] ?></td>
-                                                <td><?= $query['nama_matakuliah'] ?>
-                                                <?= $query['nama_dosen'] ?></td>
+                                                <td>
+                                                    <?php echo $query['nama_matakuliah'] . "<br>"?>
+                                                <?php echo $query['nama_dosen'] ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

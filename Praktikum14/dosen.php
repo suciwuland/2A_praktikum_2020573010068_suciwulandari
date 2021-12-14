@@ -56,7 +56,7 @@ $select = mysqli_query($conn, "SELECT * FROM tb_dosen");
                                 <form action="proses/proses_tambah_datadosen.php" method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="nim" id="floatingInput" autofocus>
+                                            <input type="text" class="form-control" name="nip" id="floatingInput" autofocus>
                                             <label for="floatingInput">NIP</label>
                                         </div>
                                         <div class="form-floating mb-3">
@@ -113,7 +113,7 @@ $select = mysqli_query($conn, "SELECT * FROM tb_dosen");
                             <tr>
                                 <th scope="row"><?= $no; ?></th>
                                 <th scope="row"><?= $hasil['nip'] ?></th>
-                                <td><?= $hasil['nama']; ?></td>
+                                <td><?= $hasil['nama_dosen']; ?></td>
                                 <td><?= $hasil['alamat'] ?></td>
                                 <td><?= $hasil['tp_lahir'] ?></td>
                                 <td><?= $hasil['tgl_lahir'] ?></td>
