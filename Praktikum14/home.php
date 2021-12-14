@@ -1,9 +1,9 @@
 <?php
 include 'proses/session.php';
+include 'proses/koneksi.php';
 ?>
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,7 +20,6 @@ include 'proses/session.php';
             require "header.php";
         ?>
     </div>
-
     <div class="container-fluid em-1 mt-2">
         <div class="row">
             <div class="col-3">
@@ -32,11 +31,13 @@ include 'proses/session.php';
             <div class="col-9">
                 <div class="card text-black em-1 mt-4" style="background-color: lightsteelblue;">
                     <div class="card-header">
-                        <b>Mahasiswa</b>
+                        <b>SISTEM INFORMASI PEMINJAMAN BARANG JURUSAN TEKNOLOGI INFORMASI DAN KOMPUTER</b>
                     </div>
                     <div class="card-body">
-                        <hr>
-                        <a href="#" class="btn btn-outline-dark">UBAH</a>
+                        <h5 class="card-title">Peminjaman Barang Keperluan Ngajar-Mengajar di Administrasi Jurusan TIK</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <?php echo $_SESSION['username'];
+                        ?>
                     </div>
                 </div>
             </div>
