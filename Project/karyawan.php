@@ -235,7 +235,7 @@ LEFT JOIN tbuser usr ON pro.user=usr.id_user WHERE usr.level='karyawan'");
                                                 <h5 class="modal-title" id="exampleModalLabel">Hapus</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="proses/delete_profile.php" method="POST">
+                                            <form action="proses/delete_karyawan.php" method="POST">
                                                 <div class="modal-body">
                                                     <input type="hidden" name="id_profile" value="<?= $hasil['id_profile']; ?>">
                                                     <p style="color: red;">Apakah anda akan menghapus data
