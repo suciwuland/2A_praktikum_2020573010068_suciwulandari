@@ -6,7 +6,7 @@ if (isset($_POST['simpan'])) {
     $passwordbaru = md5($_POST['passwordbaru']);
     $passwordlama = md5($_POST['passwordlama']);
 
-    $sql = mysqli_query($conn, "SELECT * FROM tbuser WHERE username = '$username'");
+    $sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$username'");
     $hasil = mysqli_fetch_array($sql);
 
     if ($passwordlama == $hasil['password']){

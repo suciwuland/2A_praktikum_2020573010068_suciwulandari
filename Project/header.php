@@ -1,4 +1,8 @@
-
+<?php
+if (empty($_GET['x'])) {
+    $_GET['x']='home';
+}
+?>
 <nav class="navbar" style="background-color: black;">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,7 +10,7 @@
     </button>
     <a class="navbar-brand" href="home.php">
       <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-      Bootstrap
+      <strong style="color:white;">NAMA TOKO</strong>
     </a>
     <form class="d-flex">
       <input class="form-control me-3" type="search" placeholder="Search" height="24" aria-label="Search">
@@ -15,11 +19,11 @@
     <div class="dropdown ms-5 me-5 pe-5">
             <a href="#" class="d-flex align-items-center link-light text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://github.com/mdo.png" alt="" width="24" height="24" class="rounded-circle me-2">
-                <strong>User</strong>
+                <strong><?= $_SESSION['username']; ?></strong>
             </a>
             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                <li><a class="dropdown-item" href="setting.php">Settings</a></li>
-                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                <li><a class="dropdown-item <?php if ($_GET['x'] == 'setting') echo 'active'; ?>" href="setting">Settings</a></li>
+                <li><a class="dropdown-item <?php if ($_GET['x'] == 'profile') echo 'active'; ?>" href="profile">Profile</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>

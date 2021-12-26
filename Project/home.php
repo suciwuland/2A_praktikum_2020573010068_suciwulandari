@@ -13,6 +13,8 @@ include 'proses/session.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sidebars.css" rel="stylesheet">
     <title>Document</title>
 </head>
 
@@ -43,7 +45,7 @@ include 'proses/session.php';
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                        Earnings (Monthly)</div>
+                                                        Penghasilan(Harian)</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                                                 </div>
                                                 <div class="col-auto">
@@ -61,7 +63,7 @@ include 'proses/session.php';
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        Earnings (Annual)</div>
+                                                        Penghasilan(Bulanan)</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                                                 </div>
                                                 <div class="col-auto">
@@ -80,18 +82,12 @@ include 'proses/session.php';
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Transaksi Harian
                                                     </div>
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div class="progress progress-sm mr-2">
-                                                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -108,7 +104,7 @@ include 'proses/session.php';
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                        Pending Requests</div>
+                                                        Barang Terjual</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                                 </div>
                                                 <div class="col-auto">
@@ -125,7 +121,7 @@ include 'proses/session.php';
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
-                                    Bar Chart Example
+                                    Grafik Penjualan
                                 </div>
                                 <div class="card-body"><canvas id="myBarChart" width="100%" height="30"></canvas></div>
                             </div>
@@ -137,21 +133,21 @@ include 'proses/session.php';
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
-                                    Area Chart Example
+                                    Penjualan Bulanan
                                 </div>
                                 <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
                         <div class="col-lg-5">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-pie me-1"></i>
-                                        Pie Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-pie me-1"></i>
+                                    Karyawan
                                 </div>
+                                <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>

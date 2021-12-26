@@ -5,8 +5,8 @@ if (empty($_GET['x'])) {
     require 'home.php';
 } else if ($_GET['x'] == 'transaksi') {
     require 'transaksi.php';
-} else if ($_GET['x'] == 'dropship') {
-    require 'dropship.php';
+} else if ($_GET['x'] == 'supplier') {
+    require 'supplier.php';
 } else if ($_GET['x'] == 'barang') {
     require 'barang.php';
 }  else if ($_GET['x'] == 'karyawan') {
@@ -15,12 +15,11 @@ if (empty($_GET['x'])) {
     require 'pembelian.php';
 } else if ($_GET['x'] == 'penjualan') {
     require 'penjualan.php';
+}else if ($_GET['x'] == 'laporan') {
+    require 'laporan.php';
 }else if ($_GET['x'] == 'kendala') {
     require 'kendala.php';
-}else if ($_GET['x'] == 'kendala') {
-    require 'kendala.php';
-}
-else if ($_GET['x'] == 'profile') {
+} else if ($_GET['x'] == 'profile') {
     require 'profile.php';
 } else if ($_GET['x'] == 'setting') {
     require 'setting.php';

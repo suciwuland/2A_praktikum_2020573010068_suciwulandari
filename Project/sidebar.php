@@ -12,15 +12,16 @@ if (empty($_GET['x'])) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>Document</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
 
 
     <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sidebars.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -37,9 +38,6 @@ if (empty($_GET['x'])) {
         }
     </style>
 
-
-    <!-- Custom styles for this template -->
-    <link href="sidebars.css" rel="stylesheet">
 </head>
 
 <body>
@@ -111,7 +109,7 @@ if (empty($_GET['x'])) {
                 if ($row['level'] == 'Admin' || $row['level'] == 'Pemilik') {
                 ?>
                     <li class="nav-item">
-                        <a href="home" class="nav-link <?php if ($_GET['x'] == 'home') echo 'active'; ?>" aria-current="page">
+                        <a href="home" class="nav-link text-white <?php if ($_GET['x'] == 'home') echo 'active'; ?>" aria-current="page">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#home" />
                             </svg>
@@ -135,11 +133,11 @@ if (empty($_GET['x'])) {
                 if ($row['level'] == 'Admin' || $row['level'] == 'Pemilik') {
                 ?>
                     <li>
-                        <a href="dropship" class="nav-link text-white <?php if ($_GET['x'] == 'dropship') echo 'active'; ?> ">
+                        <a href="supplier" class="nav-link text-white <?php if ($_GET['x'] == 'supplier') echo 'active'; ?> ">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#table" />
                             </svg>
-                            Dropship
+                            Supplier
                         </a>
                     </li>
                 <?php
@@ -187,9 +185,7 @@ if (empty($_GET['x'])) {
                             Penjualan
                         </a>
                     </li>
-                    <?php
-                if ($row['level'] == 'Admin' || $row['level'] == 'Pemilik') {
-                ?>
+    
                     <li>
                         <a href="laporan" class="nav-link text-white <?php if ($_GET['x'] == 'laporan') echo 'active'; ?> ">
                             <svg class="bi me-2" width="16" height="16">
@@ -198,9 +194,6 @@ if (empty($_GET['x'])) {
                             Laporan
                         </a>
                     </li>
-                    <?php 
-                }
-                ?>
                     <li>
                         <a href="kendala" class="nav-link text-white <?php if ($_GET['x'] == 'kendala') echo 'active'; ?> ">
                             <svg class="bi me-2" width="16" height="16">
