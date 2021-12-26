@@ -15,7 +15,7 @@ if (isset($_POST['simpan'])) {
             echo '<script>window.location="../setting.php";</script>';
         } else {
             if ($hasil['username'] == $username) {
-                $update = mysqli_query($conn, "UPDATE tb_user SET Password = '$passwordbaru' WHERE username = '$username'");
+                $update = mysqli_query($conn, "UPDATE tbuser SET password = '$passwordbaru' WHERE username = '$username'");
             }
             if ($update) {
                 echo '<script>alert("Password berhasil diubah");</script>';
