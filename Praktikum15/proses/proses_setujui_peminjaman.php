@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['setuju/tolak'])) {
-    require "Koneksi.php";
+    require "koneksi.php";
 
     $id_peminjaman = $_POST['id_peminjaman'];
     $aksi = $_POST['aksi'];
@@ -25,13 +25,13 @@ if (isset($_POST['setuju/tolak'])) {
             }
         } else {
             echo '<script>alert("Proses Setujui/Tolak bermasalah, mohon kontak admin");</script>';
-            echo '<script>window.location="../datapmj";</script>';
+            echo '<script>window.location="../datapinjam";</script>';
         }
     } else {
         echo '<script>alert("ID peminjaman tidak ditemukan, mohon kontak admin");</script>';
-        echo '<script>window.location="../datapmj";</script>';
+        echo '<script>window.location="../datapinjam";</script>';
     }
 } else {
     echo '<script>alert("Tombol simpan belum di tekan");</script>';
-    echo '<script>window.location="../pmj";</script>';
+    echo '<script>window.location="../datapinjam";</script>';
 }

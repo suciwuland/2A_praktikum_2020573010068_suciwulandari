@@ -164,6 +164,10 @@ $sql = mysqli_query(
                                                     $status = "Pending";
                                                 } elseif ($hasil['status'] == 3) {
                                                     $status = "Ditolak";
+                                                }elseif ($hasil['status'] == 4) {
+                                                    $status = "Telah Dikembalikan";
+                                                }elseif ($hasil['status'] == 5) {
+                                                    $status = "Proses Dikembalikan";
                                                 }
                                                 ?>
                                                 <td><?= $status ?></td>
@@ -231,7 +235,7 @@ $sql = mysqli_query(
                                     } elseif ($query['status'] == 4) {
                                         echo "<span class='badge bg-primary'>Telah Dikembalikan</span>";
                                     }elseif ($query['status'] == 5) {
-                                        echo "<span class='badge bg-primary'>Proses DikembalikanDikembalikan</span>";
+                                        echo "<span class='badge bg-primary'>Proses Dikembalikan</span>";
                                     }
                                     ?>
                                 </td>

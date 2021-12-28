@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['setuju_kembalikan'])) {
-    require "Koneksi.php";
+    require "koneksi.php";
 
     $id_peminjaman = $_POST['id_peminjaman'];
 
