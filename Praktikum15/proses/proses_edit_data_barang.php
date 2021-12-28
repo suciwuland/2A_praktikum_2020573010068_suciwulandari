@@ -1,6 +1,5 @@
 <?php
 require "session.php";
-
 if (isset($_POST['edit'])) {
     require "koneksi.php";
     $kode_barang = $_POST['kode_brg'];

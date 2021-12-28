@@ -2,20 +2,27 @@
 require "proses/session.php";
 require "proses/koneksi.php";
 
-$select = mysqli_query($conn, "SELECT * FROM tb_peminjaman pem 
-LEFT JOIN tb_barang brg ON pem.barang=brg.kode_barang
-LEFT JOIN tb_matakuliah mk ON pem.matakuliah=mk.kode_matakuliah
-LEFT JOIN tb_dosen dos ON mk.dosen=dos.nip
-LEFT JOIN tb_user usr ON pem.user=usr.id 
-WHERE username='$_SESSION[username]'");
 
+//query untuk tabel data peminjaman user
+$select = mysqli_query(
+    $conn,
+    "SELECT *
+    FROM tb_peminjaman PEM
+    LEFT JOIN tb_barang BRG ON PEM.barang = BRG.kode_barang
+    LEFT JOIN tb_matakuliah MK ON PEM.matakuliah = MK.kode_matakuliah
+    LEFT JOIN tb_dosen DSN ON MK.dosen = DSN.nip
+    LEFT JOIN tb_user USR ON USR.id = PEM.user"
+);
+
+//query untuk modal list peminjaman
 $sql = mysqli_query(
     $conn,
-    "SELECT * FROM tb_peminjaman PEM
-    RIGHT JOIN tb_barang BRG ON PEM.barang=BRG.kode_barang
+    "SELECT *
+    FROM tb_peminjaman PEM
+    RIGHT JOIN tb_barang BRG ON PEM.barang = BRG.kode_barang
     LEFT JOIN tb_mahasiswa MHS ON PEM.user = MHS.id_user
-    LEFT JOIN tb_matakuliah MK ON PEM.matakuliah=MK.kode_matakuliah
-    LEFT JOIN tb_dosen DSN ON MK.dosen=DSN.nip"
+    LEFT JOIN tb_matakuliah MK ON PEM.matakuliah = MK.kode_matakuliah
+    LEFT JOIN tb_dosen DSN ON MK.dosen = DSN.nip"
 );
 
 ?>
@@ -142,34 +149,34 @@ $sql = mysqli_query(
                                     <tbody>
                                         <?php
                                         $no = 0;
-                                        while ($query = mysqli_fetch_array($sql)) {
+                                        while ($hasil = mysqli_fetch_array($sql)) {
                                             $no++;
                                         ?>
                                             <tr>
                                                 <th scope="row"><?= $no ?></th>
-                                                <td><?= $query['kode_barang'] ?></td>
-                                                <td><?= $query['nama_barang'] ?></td>
+                                                <td><?= $hasil['kode_barang'] ?></td>
+                                                <td><?= $hasil['nama_barang'] ?></td>
                                                 <?php
                                                 $status = "";
-                                                if ($query['status'] == 1) {
+                                                if ($hasil['status'] == 1) {
                                                     $status = "Berhasil";
-                                                } elseif ($query['status'] == 2) {
+                                                } elseif ($hasil['status'] == 2) {
                                                     $status = "Pending";
-                                                } elseif ($query['status'] == 3) {
+                                                } elseif ($hasil['status'] == 3) {
                                                     $status = "Ditolak";
                                                 }
                                                 ?>
                                                 <td><?= $status ?></td>
                                                 <td>
-                                                    <?php echo $query['nama'] . "<br>" ?>
-                                                    <?php echo $query['kelas'] . "<br>" ?>
-                                                    <?php echo $query['prodi'] ?>
+                                                    <?php echo $hasil['nama'] . "<br>" ?>
+                                                    <?php echo $hasil['kelas'] . "<br>" ?>
+                                                    <?php echo $hasil['prodi'] ?>
                                                 </td>
-                                                <td><?= $query['waktu_peminjaman'] ?></td>
-                                                <td><?= $query['waktu_pengembalian'] ?></td>
+                                                <td><?= $hasil['waktu_peminjaman'] ?></td>
+                                                <td><?= $hasil['waktu_pengembalian'] ?></td>
                                                 <td>
-                                                    <?php echo $query['nama_matakuliah'] . "<br>" ?>
-                                                    <?php echo $query['nama_dosen'] ?></td>
+                                                    <?php echo $hasil['nama_matakuliah'] . "<br>" ?>
+                                                    <?php echo $hasil['nama_dosen'] ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -222,153 +229,155 @@ $sql = mysqli_query(
                                     } elseif ($query['status'] == 3) {
                                         echo "<span class='badge bg-danger'>Ditolak</span>";
                                     } elseif ($query['status'] == 4) {
-                                        echo "<span class='badge bg-primary'>Dikembalikan</span>";
+                                        echo "<span class='badge bg-primary'>Telah Dikembalikan</span>";
+                                    }elseif ($query['status'] == 5) {
+                                        echo "<span class='badge bg-primary'>Proses DikembalikanDikembalikan</span>";
                                     }
                                     ?>
                                 </td>
                                 <td><img src="<?= "gambar/barang/" . $query['gambar'] . ".jpg"; ?>" width="150" height="120" class="rounded" alt=""></td>
-
-
                                 <td>
-                                    <button type="button" class="btn btn-primary" name="approve" data-bs-toggle="modal" data-bs-target="#ModalApprove<?= $query['kode_barang']; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">
-                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                                            <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z" />
-                                        </svg>
-                                </button>
-                                    <button type="button" class="btn btn-warning" name="edit" data-bs-toggle="modal" data-bs-target="#ModalEdit<?= $query['kode_barang']; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                        </svg>
-                                    </button>
-                                    <button type="button" class="btn btn-danger" name="delete" data-bs-toggle="modal" data-bs-target="#ModalDelete<?= $query['kode_barang']; ?>">
+                                    <?php if ($query['status'] == 2) { ?>
+                                        <button type="button" class="btn btn-primary" name="edit" data-bs-toggle="modal" data-bs-target="#ModalEdit<?= $query['kode_barang']; ?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                            </svg>
+                                        </button>
+                                    <?php } elseif ($query['status'] == 1) { ?>
+                                        <button type="button" class="btn btn-success" name="kembalikan" data-bs-toggle="modal" data-bs-target="#ModalKembalikan<?= $query['kode_barang']; ?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shift" viewBox="0 0 16 16">
+                                                <path d="M7.27 2.047a1 1 0 0 1 1.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-3H1.654C.78 10.5.326 9.455.924 8.816L7.27 2.047zM14.346 9.5 8 2.731 1.654 9.5H4.5a1 1 0 0 1 1 1v3h5v-3a1 1 0 0 1 1-1h2.846z" />
+                                            </svg>
+                                        </button>
+                                    <?php } elseif ($query['status'] == 3) { ?>
+                                        <button type="button" class="btn btn-danger" name="delete" data-bs-toggle="modal" data-bs-target="#ModalDelete<?= $query['kode_barang']; ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                                        </svg>
-                                    </button>
+                                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                            </svg>
+                                        </button>
+                                    <?php } elseif ($query['status'] == 5) { ?>
+                                        <button type="button" class="btn btn-danger" name="proses_kembalikan" data-bs-toggle="modal" data-bs-target="#ModalProsesKembalikan<?= $query['kode_barang']; ?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                            </svg>
+                                        </button>
+                                    <?php } ?>
                                 </td>
-                                <!--modal approve-->
-                                <div class="modal fade" id="ModalApprove<?= $query['kode_barang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                <!-- modal edit -->
+                                <div class="modal fade" id="ModalEdit<?= $query['kode_barang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Approve Peminjaman</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="proses/proses_disetujui_peminjaman.php" method="POST">
-                                                <div class="modal-body">
-                                                    <div class="barang">
-                                                        <label for="level" class="form-label">Nama Barang</label>
-                                                        <input type="text" class="form-control" name="brg" value="<?php echo $query['kode_barang'] . "-" . $query['nama_barang'] . " " . $query['keterangan'] ?>" disabled>
+                                            <div class="modal-body">
+                                                <form action="proses/proses_edit_barang.php" method="POST" enctype="multipart/form-data">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" name="kd-brg" id="floatingInput" value="<?= $query['kode_barang'] ?>" readonly>
+                                                        <label for="floatingInput">Kode Barang</label>
                                                     </div>
-                                                    <div class="matakuliah">
-                                                        <label for="matakuliah" class="form-label">Mata Kuliah</label>
-                                                        <input type="text" class="form-control" name="brg" value="<?php echo $query['kode_matakuliah'] . "-" . $query['nama_matakuliah'] . " " . $query['nama_dosen'] ?>" disabled>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" name="nm-brg" id="floatingInput" value="<?= $query['nama_barang'] ?>" autofocus>
+                                                        <label for="floatingInput">Nama Barang</label>
                                                     </div>
-                                                    <div class="wkt_pinjam">
-                                                        <label for="wkt_pinjam" class="form-label">Waktu Peminjaman</label>
-                                                        <input type="text" class="form-control" name="brg" value="<?php echo date("d-m-Y H:i:s", strtotime($query['waktu_peminjaman'])) ?>" disabled>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" name="ket" id="floatingPassword" value="<?= $query['keterangan'] ?>">
+                                                        <label for="floatingPassword">Keterangan</label>
                                                     </div>
-                                                    <div class="wkt_kembali">
-                                                        <label for="wkt_kembali" class="form-label">Waktu Pengembalian</label>
-                                                        <input type="text" class="form-control" name="brg" value="<?php echo date("d-m-Y H:i:s", strtotime($query['waktu_pengembalian'])) ?>" disabled>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="number" class="form-control" name="stok" id="floatingPassword" value="<?= $query['stock'] ?>">
+                                                        <label for="floatingPassword">Stok</label>
                                                     </div>
-                                                    <div class="approve">
-                                                        <label for="approve" class="form-label">Aksi</label>
-                                                        <select class="form-select mb-3" aria-label="Default select example" id="barang" name="aksi">
-                                                        <option value="1">Disetujui</option>
-                                                        <option value="3">Ditolak</option>
-                                                            </select>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <input type="submit" class="btn btn-primary" name="edit" value="Selesai">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!--akhir modal approve -->
-                                    <!-- modal edit -->
-                                    <div class="modal fade" id="ModalEdit<?= $query['kode_barang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Peminjaman</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <form action="proses/proses_tambah_peminjaman.php" method="POST">
-                                                    <div class="modal-body">
-                                                        <div class="barang">
-                                                            <label for="level" class="form-label">Nama Barang</label>
-                                                            <select class="form-select mb-3" aria-label="Default select example" id="barang" name="brg" required>
-                                                                <?php
-                                                                $barang = mysqli_query($conn, "SELECT * FROM tb_barang");
-                                                                while ($hasil = mysqli_fetch_array($barang)) {
-                                                                ?>
-                                                                    <option value="<?= $hasil['kode_barang'] ?>">
-                                                                        <?= $hasil['kode_barang'] . " " . $hasil['nama_barang'] ?>
-                                                                    </option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="matakuliah">
-                                                            <label for="matakuliah" class="form-label">Mata Kuliah</label>
-                                                            <select class="form-select mb-3" aria-label="Default select example" id="matakuliah" name="mk" required>
-                                                                <?php
-                                                                $matakuliah = mysqli_query(
-                                                                    $conn,
-                                                                    "SELECT * FROM tb_matakuliah MTK
-                                                        LEFT JOIN tb_dosen DSN ON MTK.dosen = DSN.nip"
-                                                                );
-                                                                while ($hasil = mysqli_fetch_array($matakuliah)) {
-                                                                ?>
-                                                                    <option value="<?= $hasil['kode_matakuliah'] ?>">
-                                                                        <?= $hasil['kode_matakuliah'] . " " . $hasil['nama_matakuliah'] . " - " . $hasil['nama_dosen'] ?>
-                                                                    </option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="wkt_kembali">
-                                                            <label for="wkt_kembali" class="form-label">Waktu Pengembalian</label>
-                                                            <input type="date" class="form-select mb-3" aria-label="Default select example" id="wkt_kembali" name="wkt_kembali" required>
-                                                            </input>
-                                                        </div>
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="inputGroupFile02" name="gambar">
+                                                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <input type="submit" class="btn btn-primary" name="edit" value="Edit">
+                                                        <input type="submit" class="btn btn-primary" name="edit" value="EDIT">
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-                                        <!-- akhir modal edit -->
+                                    </div>
+                                </div>
+                                <!-- akhir modal edit -->
 
-                                        <!-- modal hapus -->
-                                        <div class="modal fade" id="ModalDelete<?= $query['kode_barang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <form action="proses/proses_hapus_barang.php" method="POST">
-                                                        <div class="modal-body">
-                                                            <input type="hidden" name="kode_barang" value="<?= $query['kode_barang'] ?>">
-                                                            <input type="hidden" name="gambar" value="<?= $query['gambar'] ?>">
-                                                            <p style="color: red;">Apakah anda akan menghapus data
-                                                                "<?= $query['nama_barang']; ?>" ?</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <input type="submit" class="btn btn-secondary" name="hapus" value="Delete">
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                <!-- modal hapus -->
+                                <div class="modal fade" id="ModalDelete<?= $query['kode_barang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
+                                            <form action="proses/proses_hapus_barang.php" method="POST">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="kode_barang" value="<?= $query['kode_barang'] ?>">
+                                                    <input type="hidden" name="gambar" value="<?= $query['gambar'] ?>">
+                                                    <p style="color: red;">Apakah anda akan menghapus data
+                                                        "<?= $query['nama_barang']; ?>" ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <input type="submit" class="btn btn-secondary" name="hapus" value="Delete">
+                                                </div>
+                                            </form>
                                         </div>
-                                        <!-- akhir modal hapus -->
+                                    </div>
+                                </div>
+                                <!-- akhir modal hapus -->
+
+                                <!-- modal Kembalikan -->
+                                <div class="modal fade" id="ModalKembalikan<?= $query['kode_barang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Mengambalikan Peminjaman</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="proses/proses_kembalikan_peminjaman.php" method="POST">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="id_peminjaman" value="<?= $query['id_peminjaman'] ?>">
+                                                    <p style="color: red;">Apakah anda akan mengembalikan peminjaman barang
+                                                        "<?= $query['nama_barang']; ?>" ini?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <input type="submit" class="btn btn-secondary" name="kembalikan" value="Kembalikan">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- akhir modal kembalikan -->
+
+                                <!-- modal proses setuju dikembalikan -->
+                                <div class="modal fade" id="ModalProsesKembalikan<?= $query['kode_barang']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Mengambalikan Peminjaman</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="proses/proses_setuju_kembalikan_peminjaman.php" method="POST">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="id_peminjaman" value="<?= $query['id_peminjaman'] ?>">
+                                                    <p style="color: red;">Apakah anda setuju barang
+                                                        "<?= $query['nama_barang']; ?>" dikembalikan?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <input type="submit" class="btn btn-secondary" name="setuju_kembalikan" value="Setuju Dikembalikan">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- akhir modal proses setuju kembalikan -->
                             </tr>
                         <?php } ?>
                     </tbody>
